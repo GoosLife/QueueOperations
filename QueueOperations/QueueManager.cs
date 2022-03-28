@@ -34,22 +34,54 @@ namespace QueueOperations
             return cards.Dequeue().ToString();
         }
 
-        public string ShowItems()
+        public string ShowNumberOfItems()
         {
-            string output = "";
-
-            foreach (Card c in cards)
-            {
-                output += c.ToString();
-            }
-
-            return output;
+            return cards.Count.ToString();
         }
 
         public string ShowFirstAndLast()
         {
             string output = "";
-            // Maybe copy to array?
+
+            Card[] cardArr = cards.ToArray();
+
+            output += cardArr[0];
+            output += "\n";
+            output += cardArr[cardArr.Length - 1];
+
+            return output;
+        }
+
+        public string FindItem(string searchQuery)
+        {
+            string output = "";
+            List<Card> matches = cards.Where(c => c.Name.Contains(searchQuery)).ToList();
+            
+            if (matches.Count > 0)
+            {
+                foreach (Card c in matches)
+                {
+                    output += c + "\n";
+                }
+            }
+            else
+            {
+                return "No matches found";
+            }
+            
+            return output;
+        }
+
+        public string PrintAllItems()
+        {
+            string output = "";
+
+            foreach (Card c in cards)
+            {
+                output += c + "\n";
+            }
+
+            return output;
         }
     }
 }

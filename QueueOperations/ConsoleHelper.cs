@@ -1,4 +1,6 @@
-﻿namespace QueueOperations
+﻿using System;
+
+namespace QueueOperations
 {
     public class ConsoleHelper
     {
@@ -73,7 +75,7 @@
                     Console.SetCursorPosition(startX + (i % optionsPerLine) * spacingPerLine, startY + i / optionsPerLine);
 
                     if (i == currentSelection)
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Black;
 
                     Console.Write(options[i]);
 
@@ -142,7 +144,7 @@
                     Console.SetCursorPosition(startX + (i % optionsPerLine) * spacingPerLine, startY + i / optionsPerLine);
 
                     if (i == currentSelection)
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Black;
 
                     Console.Write(options[i]);
 

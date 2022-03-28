@@ -1,15 +1,15 @@
-﻿using QueueOperations;
+﻿using System;
+using QueueOperations;
 
 namespace QueueOperations
 {
     public class Program
     {
         static QueueManager qm = new QueueManager();
+        static bool displayMainMenu = true;
 
         public static void Main(string[] args)
         {
-            bool displayMainMenu = true;
-
             string[] mainMenuOptions = new string[] {"1. Add items",
             "2. Delete items",
             "3. Show the number of items",
@@ -22,10 +22,12 @@ namespace QueueOperations
 
             do
             {
+                Console.Clear();
+
                 ConsoleHelper.Header("H1 Queue Operations Menu");
 
                 ChooseAction(ConsoleHelper.MultipleChoice(false, 1, 7, mainMenuOptions));
-            } while (displayMainMenu = true);
+            } while (displayMainMenu == true);
         }
         public static void ChooseAction(int actionId)
         {
@@ -38,7 +40,7 @@ namespace QueueOperations
                     DeleteItems();
                     break;
                 case 2:
-                    ShowItems();
+                    ShowNumberOfItems();
                     break;
                 case 3:
                     ShowFirstAndLast();
@@ -61,23 +63,75 @@ namespace QueueOperations
 
             Console.WriteLine("Input name of card to add: ");
             string name = Console.ReadLine();
-
-            qm.AddItems(name);
+            
+            if (!string.IsNullOrEmpty(name))
+            {
+                qm.AddItems(name);
+                Console.WriteLine($"Added {name} to the list of cards.");
+            }
+            else
+            {
+                Console.WriteLine("Please enter a name for the card to add and try again.");
+            }
+            
+            Console.ReadKey();
         }
 
         public static void DeleteItems()
         {
+            Console.Clear();
             Console.WriteLine(qm.DeleteItems());
+            Console.ReadKey();
         }
 
-        public static void ShowItems()
+        public static void ShowNumberOfItems()
         {
-            Console.WriteLine(qm.ShowItems());
+            Console.Clear();
+            Console.WriteLine(qm.ShowNumberOfItems());
+            Console.ReadKey();
         }
 
         public static void ShowFirstAndLast()
         {
-            qm.ShowFirstAndLast();
+            Console.Clear();
+            Console.WriteLine(qm.ShowFirstAndLast());
+            Console.ReadKey();
+        }
+        
+        public static void FindItem()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Input search query: ");
+            string searchQuery = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                Console.WriteLine(qm.FindItem(searchQuery));
+            }
+            else
+            {
+
+            }
+
+            Console.ReadKey();
+        }
+
+        public static void PrintAllItems()
+        {
+            Console.Clear();
+            Console.WriteLine(qm.PrintAllItems());
+            Console.ReadKey();
+        }
+
+        public static void Exit()
+        {
+            Console.Clear();
+
+            displayMainMenu = false;
+
+            Console.WriteLine("Bye, bye!");
+            Console.ReadKey();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace QueueOperations
 {
     public class Card
     {
-        string Name { get; set; }
+        public string Name { get; set; }
 
         public Card(string name)
         {
