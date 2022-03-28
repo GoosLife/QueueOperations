@@ -27,7 +27,7 @@ namespace QueueOperations
                 ChooseAction(ConsoleHelper.MultipleChoice(false, 1, 7, mainMenuOptions));
             } while (displayMainMenu = true);
         }
-        public void ChooseAction(int actionId)
+        public static void ChooseAction(int actionId)
         {
             switch (actionId)
             {
@@ -73,6 +73,11 @@ namespace QueueOperations
         public static void ShowItems()
         {
             Console.WriteLine(qm.ShowItems());
+        }
+
+        public static void ShowFirstAndLast()
+        {
+            qm.ShowFirstAndLast();
         }
     }
 }
