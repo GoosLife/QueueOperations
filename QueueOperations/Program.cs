@@ -22,7 +22,7 @@ namespace QueueOperations
 
             do
             {
-                Console.Clear();
+                ClearScreen();
 
                 ConsoleHelper.Header("H1 Queue Operations Menu");
 
@@ -59,7 +59,7 @@ namespace QueueOperations
 
         public static void AddItems()
         {
-            Console.Clear();
+            ClearScreen();
 
             Console.WriteLine("Input name of card to add: ");
             string name = Console.ReadLine();
@@ -79,28 +79,28 @@ namespace QueueOperations
 
         public static void DeleteItems()
         {
-            Console.Clear();
+            ClearScreen();
             Console.WriteLine(qm.DeleteItems());
             Console.ReadKey();
         }
 
         public static void ShowNumberOfItems()
         {
-            Console.Clear();
+            ClearScreen();
             Console.WriteLine(qm.ShowNumberOfItems());
             Console.ReadKey();
         }
 
         public static void ShowFirstAndLast()
         {
-            Console.Clear();
+            ClearScreen();
             Console.WriteLine(qm.ShowFirstAndLast());
             Console.ReadKey();
         }
         
         public static void FindItem()
         {
-            Console.Clear();
+            ClearScreen();
 
             Console.WriteLine("Input search query: ");
             string searchQuery = Console.ReadLine();
@@ -109,29 +109,38 @@ namespace QueueOperations
             {
                 Console.WriteLine(qm.FindItem(searchQuery));
             }
-            else
-            {
-
-            }
 
             Console.ReadKey();
         }
 
         public static void PrintAllItems()
         {
-            Console.Clear();
+            ClearScreen();
             Console.WriteLine(qm.PrintAllItems());
             Console.ReadKey();
         }
 
         public static void Exit()
         {
-            Console.Clear();
+            ClearScreen();
 
             displayMainMenu = false;
 
             Console.WriteLine("Bye, bye!");
             Console.ReadKey();
+        }
+
+        // Clear the screen - much faster than Console.ClearScreen(), which was the main issue making the console slow.
+        public static void ClearScreen()
+        {
+            Console.SetCursorPosition(0, 0);
+            
+            for (int i = 0; i < 25; i++)
+            {
+                Console.WriteLine(new String(' ', Console.BufferWidth));
+            }
+
+            Console.SetCursorPosition(0, 0);
         }
     }
 }
